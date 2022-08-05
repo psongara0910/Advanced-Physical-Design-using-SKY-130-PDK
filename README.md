@@ -38,3 +38,34 @@ There are many preconfigured designs in the openlane/designs folder and we will 
 ![3](https://user-images.githubusercontent.com/110470328/183157557-c5951a31-49b8-4a79-960c-31b7c4a3a45f.JPG)
 <br />**Fig03: picorv32a Design for the flow**
 
+![5](https://user-images.githubusercontent.com/110470328/183157822-58a56077-ca78-4492-87d9-066fe937e9c7.JPG)
+<br />**Fig04: Contents of picorv32a Design Folder**
+
+In the above snippet we can see that there are two config.tcl files which contains the constraints that will be used in the Openlane Flow.
+sky130_sky130a_fd_sc_hd_config.tcl has high precedence compared to config.tcl.
+runs folder will contains the results and reports after execution of each stage of flow.
+
+### Invoking Openlane
+1. Openlane can be invoked by either using **"docker"** or **"make mount"** commmands.
+2. Run **"./flow.tcl -interactive"** to run the OpenLANE flow in interactive mode i.e we will have to run each step manually
+3. Import openlane package using **"package require openlane 0.9"**
+
+![1](https://user-images.githubusercontent.com/110470328/183159288-e7a5b457-d40e-48de-9629-0d3d0e28c81d.JPG)
+<br />**Fig05: Invoking Openlane**
+
+### Design Stage Preparation
+  **_Command: "prep -design picorv32a"_**
+<br />This command will create directory structure required for openlane flow. We need to modify .tcl file to change the constraints as per our need like changing core utilization ratio.
+![4](https://user-images.githubusercontent.com/110470328/183159993-1a928aae-0448-4f66-aaec-bbd13a2f24df.JPG)
+<br />**Fig06: Design Preparation**
+
+![6](https://user-images.githubusercontent.com/110470328/183160100-be66463a-db0e-4e21-b244-fe0853efbcf5.JPG)
+<br />**Fig07a: Design Folder contents after Design Preparation**
+
+![7](https://user-images.githubusercontent.com/110470328/183160568-fdeb9a93-c955-46b2-a39d-864621d0e600.JPG)
+<br />**Fig07b: Design Folder contents after Design Preparation**
+
+### Run Synthesis
+Sythesis maps the RTL design into interconnection of logical gate which will perform the same functions as described using HDL(Hardware Description Language)
+
+
