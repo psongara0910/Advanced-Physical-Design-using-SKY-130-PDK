@@ -65,7 +65,24 @@ runs folder will contains the results and reports after execution of each stage 
 ![7](https://user-images.githubusercontent.com/110470328/183160568-fdeb9a93-c955-46b2-a39d-864621d0e600.JPG)
 <br />**Fig07b: Design Folder contents after Design Preparation**
 
+![8](https://user-images.githubusercontent.com/110470328/183162209-20d6ca68-384c-41ae-801f-3aca9c41fbf6.JPG)
+<br />**Fig07c: Design Folder contents after Design Preparation**
+
 ### Run Synthesis
-Sythesis maps the RTL design into interconnection of logical gate which will perform the same functions as described using HDL(Hardware Description Language)
+Sythesis maps the RTL design into interconnection of logical gate which will perform the same functions as described using HDL(Hardware Description Language).
+**_command: run_synthesis_** performs synthesis using YOSYS open-source synthesis tool.
+![9](https://user-images.githubusercontent.com/110470328/183175439-81504ca7-1918-457c-ab8f-7d862c0438e1.JPG)
+<br />**Fig08: run_synthesis completion**
+
+#### Reports: 
+1. 1-yosys_4.stat.rpt shows the information about cells usage, wires and chip area of the module.
+![10](https://user-images.githubusercontent.com/110470328/183177835-7ba0cba4-3ec9-4d14-8e4e-703fe13ac6e5.JPG)
+<br />**Fig09: Yosys Report of cells and wires used **
+
+2. 2-opensta.timing.rpt has data like fanout, slew, delay, slack(WNS and TNS).
+![14](https://user-images.githubusercontent.com/110470328/183186108-8a3df816-5c03-47b2-af9b-dd2a8f20659d.JPG)
+<br />**Fig10: OpenSTA Report of Timing **
+
+
 
 
