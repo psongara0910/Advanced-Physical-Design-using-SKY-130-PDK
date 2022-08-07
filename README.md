@@ -104,7 +104,7 @@ Readme File contents is shown below-
 
 The defaults are already set in the **floorplan.tcl** file-
 ![17](https://user-images.githubusercontent.com/110470328/183286507-de6780be-e1e8-4ba7-ab98-578ce3164cf0.JPG)
-<br />**Fig13: Contents of floorplan.tcl **
+<br />**Fig13: Contents of floorplan.tcl**
 
 Floorplan is run using command **run_floorplan** . Alternatively we can also use the following commands in the updated version of OPENLANE.
 init_floorplan 
@@ -140,7 +140,28 @@ To view our floorplan in Magic we need to provide three files as input:
 <br />**Fig17: Floorplan in Magic Layout Tool**
 
 ![25 layer of io pins magic](https://user-images.githubusercontent.com/110470328/183287117-2d7b522b-db92-4420-b5da-32d6e6749ea2.JPG)
-<br />**Fig17: Metal Layer of I/O Pins**
+<br />**Fig18: Metal Layer of I/O Pins**
+
+In the updated version of Openlane Power Distribution Network is also laid out in Floorplan stage earlier it used to be before routing.
+![18](https://user-images.githubusercontent.com/110470328/183287192-b1b414a4-bf88-490a-ad74-b99a502f8b73.JPG)
+<br />**Fig19: Successful generation of PDN**
+
+### Placement
+After Floorplanning is done then Standard cells are laid out in the placement stage. The synthesized netlist has been mapped to standard cells and floorplanning phase has determined the standard cells rows, enabling placement. 
+The placement can be run using **run_placement** command.
+![27  run_placement](https://user-images.githubusercontent.com/110470328/183287522-9f2439c5-5bab-4cd1-8bd6-15b804b88d28.JPG)
+<br />**Fig20: Placement successfully completed**
+
+![28 Magic placement](https://user-images.githubusercontent.com/110470328/183288221-d558bdd4-3586-457a-8b67-f8e3f9707752.JPG)
+<br />**Fig21: Placement in Magic**
+
+![30 Placement zoomed in](https://user-images.githubusercontent.com/110470328/183288257-30deffbd-6834-46cb-ba8e-cc7ed04be320.JPG)
+<br />**Fig22: Placement zoomed-in view**
+
+![29 Placement directory](https://user-images.githubusercontent.com/110470328/183288244-d2e2f7df-1263-4d69-be05-50803499128f.JPG)
+<br />**Fig23: Placement Results stored in placement directory**
+
+
 
 
 
