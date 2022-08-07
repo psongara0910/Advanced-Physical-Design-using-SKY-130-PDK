@@ -240,13 +240,61 @@ Magic can extract layout info in LEF format for PNR Tools. Given below are some 
 
 **track.info** has following format:<br />
   **_\<metal layer> \<direction> \<offset> \<pitch>_** <br />
- Below is a snapshot of **tracks.info** file
+<br /> Below is a snapshot of **tracks.info** file <br />
 ![41 Tracks,info](https://user-images.githubusercontent.com/110470328/183291585-e24a36e4-bd4c-45ab-b502-7e42f0ee46f2.JPG)
 <br />**Fig33 Contents of tracks.info**
 
+![Inked42 intersection of h and v track](https://user-images.githubusercontent.com/110470328/183291822-073a38f0-3df9-4195-9763-a9c786c0a3f4.jpg)
+<br />**Fig34 I/p port A and O/p port Y is at the intersection of H and V tracks**
 
+![43 Horizontal pitch](https://user-images.githubusercontent.com/110470328/183291939-82fa505f-5459-423c-906a-6492e49bdd58.JPG)
+<br />**Fig35 Width is odd multiples of horizontal track pitch**
 
+![45  lef file generation](https://user-images.githubusercontent.com/110470328/183293027-14b80c0b-84cd-4597-9a08-6c43a11e7948.JPG)
+<br />**Fig36 Lef file generation**
 
+![46 Inside lef file](https://user-images.githubusercontent.com/110470328/183293064-f66a28ee-5139-4237-918b-5bc475df19c2.JPG)
+<br />**Fig37 Contents of Lef file generated**
+
+###  Including Custom Inverter in Openlane Flow
+Steps to follow-
+1. Characterize the inverter using GUNA
+2. Include cell level liberty file in top level liberty file
+3. Reconfigure config.tcl file to include the newly generated lefs.
+  **_set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]_** <br />
+**Note:** This step will also include any extra LEF files generated for the custom standard cell(s) <br />
+![47 modified tcl file](https://user-images.githubusercontent.com/110470328/183293140-56060ceb-77db-4c72-9c95-851b9435a139.JPG)
+<br />**Fig38 Modified config.tcl file**
+
+4. Prepare design using -overwrite attribute to overwrite any update
+  **_prep -design picorv32a -tag modified -overwrite_**
+![48 Merging extra lefs](https://user-images.githubusercontent.com/110470328/183293232-891b1ac7-e0ce-4bb6-80d4-2f5d39be1432.JPG)
+<br />**Fig39 Prep Design Stage completed**
+
+5. Run following commands to add the lefs - <br />
+  **_set lefs [glob $::env(DESIGN_DIR)/src/*.lef]_** <br />
+  **_add_lefs -src $lefs_** <br />
+  
+  Now run sythesis using run_synthesis and in the reports we can see that our custom inverter has been included.
+  
+![49 synthesis result](https://user-images.githubusercontent.com/110470328/183293366-5d5ddb31-88e6-4a94-8164-2f957496ed5d.JPG)
+<br />**Fig40 Synthesis Report including modified piyushinv**
+
+### Fixing Setup Violations
+
+For the design to function properly, the worst negative slack needs to be above or equal to 0. 
+We can do following steps to fix slack
+  1. Review our synthesis strategy in OpenLANE 
+  2. Enable cell buffering
+  3. Perform manual cell replacement on our WNS path with the OpenSTA tool
+  4. Optimize the fanout value with OpenLANE tool 
+
+  Following iterative steps are done for same:
+  1. report_check
+  2. Change Fanout - for higher slews **SYNTH_MAX_FANOUT**
+  3. report_check
+  4. Replace cells (if cap is high ). This will take hit on area.
+  5. report_check
 
 
 
