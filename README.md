@@ -367,9 +367,32 @@ Now after laying out the CTS we will do the STA and the results are shown below-
 ![62 PProcessed Route Guides](https://user-images.githubusercontent.com/110470328/183294481-0a032e7a-373c-4ced-95bd-b274c72836fb.JPG)
 <br />**Fig49 Pre-processing routes**
 
+Power flows from:
+1. Outside to Pads
+2. Pads to ring
+3. Ring to power straps
+4. Straps to STD cells
+![60 pdn](https://user-images.githubusercontent.com/110470328/183309866-ba915742-6dfc-4911-b26e-11ace7fdd947.JPG)
+<br />**Fig50 Power Distribution Network**
 
+### Routing:<br />
+Routing is the final step of whole Physical Design flow and in this final gds file is streamed out which is given to the foundry for fabrication.
+Routing is run using **run_routing** command.
+Routing is a iterative process in which optimisation keeps happening until there are no DRC violations.
+After routing **run_magic** command is run to stream out gds and mag file.
+![61 ROuting optimizations](https://user-images.githubusercontent.com/110470328/183310043-7fef7a2f-10c6-4bad-917b-28d02566305a.JPG)
+<br />**Fig51 Optimisation happening in TritonRoute**
 
+![63 ROuting report](https://user-images.githubusercontent.com/110470328/183310070-6ac6eb58-7465-438f-ae3f-247f997bb915.JPG)
+<br />**Fig52 Routing report**
 
+Routing has also generated SPEF(Standard Parasitics Exchange Format) which contains parasitics data and in newer version of Openlane it is integrated with the flow.
 
+**NOTE:** If DRC errors persists after running TritonRoute we can choose two options-
+1. Re-run routing with higher QoR settings
+2. Manually fix DRC errors specific in tritonRoute.drc file
 
+gds is streamed out using magic and it is shown below-
+![64 gds streamout](https://user-images.githubusercontent.com/110470328/183310430-a2a79cfa-ef64-479f-a392-2fd3cdf6955a.JPG)
+<br />**Fig53 GDS and MAG file streamout**
 
