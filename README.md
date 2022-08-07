@@ -161,6 +161,34 @@ The placement can be run using **run_placement** command.
 ![29 Placement directory](https://user-images.githubusercontent.com/110470328/183288244-d2e2f7df-1263-4d69-be05-50803499128f.JPG)
 <br />**Fig23: Placement Results stored in placement directory**
 
+### Standard Cell Characterization
+1. Inputs - PDKs, DRC & LVS rules, SPICE models, library & user-defined specs.
+2. Design Steps - Software GUNA (Characterization tool)
+3. Outputs - Outputs are CDL, GDSII, LEF, extracted Spice netlist (.cir), & provide Timing (delays, slews), Power, Noise, function informataion in **.lib** format
+<br />**==> .lib information is important for PD analysis.**
+
+## Day 3
+### Opening the custom inverter layout file in Magic
+![image](https://user-images.githubusercontent.com/110470328/183288679-1bfa52a9-a2aa-4b9d-b892-ab5434dd6ba1.png)
+<br />**Fig24: Opening inverter.mag file in Magic**
+
+![32  inv layout in magic](https://user-images.githubusercontent.com/110470328/183288743-801d8c45-b013-4871-a2bc-e1789db777f6.JPG)
+<br />**Fig25: Inverter Layout in Magic**
+
+![33 inv nmos pmos in magic](https://user-images.githubusercontent.com/110470328/183288772-80eb3786-99ce-45db-a363-a9c34958ac70.JPG)
+<br />**Fig26: NMOS & PMOS Layers in Magic**
+
+Now we will need the spice file .cir from this layout for simulation and characterization in NGspice.
+This can be done using following commands -
+**_extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice_**
+
+![35 spice file ext2spice](https://user-images.githubusercontent.com/110470328/183289035-09e2c2fe-183d-4fcc-be69-9470e03fc58a.JPG)
+<br />**Fig27: Extracting spice file from Magic**
+
+
+
 
 
 
