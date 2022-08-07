@@ -329,7 +329,42 @@ Now we will lay out the clock tree network using **run_cts**.
 ![55  run_cts](https://user-images.githubusercontent.com/110470328/183294125-a31b405f-791b-4289-811f-3bef04200682.JPG)
 <br />**Fig45 Running Clock Tree Synthesis**
 
+![56 cts successful](https://user-images.githubusercontent.com/110470328/183294161-0cf536d9-fe28-47cd-a18e-2794ccd9433a.JPG)
+<br />**Fig46 CTS successful**
 
+The commands that we run like run_cts have procs inside them that run when we call them.
+Below is contents of synthesis.tcl file which runs when we call run_synthesis.
+![57 Inside ,tcl command](https://user-images.githubusercontent.com/110470328/183294257-c53aad05-2497-4d17-86d0-bb61eeeb167c.JPG)
+<br />**Fig47 Inside TCL file**
+
+Now after laying out the CTS we will do the STA and the results are shown below-
+![58  setup slack met](https://user-images.githubusercontent.com/110470328/183294305-097ed66d-fb2e-4597-a22b-49f4cbb5f607.JPG)
+<br />**Fig48 Setup Slack Met on Min Corner**
+
+![59  Hold slack met](https://user-images.githubusercontent.com/110470328/183294317-abadaead-dfe8-4607-a672-9c27c14e3c4e.JPG)
+<br />**Fig48 Hold Slack Met on Max Corner**
+
+  
+## Day5
+### Routing 
+**Maze Routing Algorithm**
+1. Connect source to Target
+2. **Priority:** L shape, Z shape, zigzag
+3. We generally have minimum number of bends in routing.
+
+**Routing Rules:** 
+1. Routing first happens on lower metal layers. Once its complete, it does upper layer routing. 
+**Ex:** First M1 routing happen & then M2 and so on.
+2. Via creation happens only during upper layer routing (M2) & not during lower layer routing (M1)
+
+**Processing Routing Guides:**
+1. Initial route guides
+2. Splitting (if there are any horizontal guide), if tool is routing on vertical layer
+3. Merging
+4. Bridging
+5. Pre-processed route Guide.
+
+![62 PProcessed Route Guides](https://user-images.githubusercontent.com/110470328/183294481-0a032e7a-373c-4ced-95bd-b274c72836fb.JPG)
 
 
 
