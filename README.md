@@ -84,5 +84,72 @@ Sythesis maps the RTL design into interconnection of logical gate which will per
 <br />**Fig10: OpenSTA Report of Timing **
 
 
+## Day2
+### Floorplanning
+We can set the following varialbles in **config.tcl**:
+1. Core Utilization (FP_CORE_UTIL)
+2. Die/Core Area
+3. Aspect Ratio
+4. Macros Placement
+5. Configuration of I/O pins (random equidistant or on one side)
+
+More floorplanning environment variables can be set and variables that can be set can be viewed in the /configuration/README.md file.
+Below is the snippet of README.md
+![15](https://user-images.githubusercontent.com/110470328/183286301-238086e6-371d-42ee-b5f2-3147d866c7f9.JPG)
+<br />**Fig11: Directory Structure of Openlane Configuration **
+
+Readme File contents is shown below-
+![16](https://user-images.githubusercontent.com/110470328/183286444-dd078f57-47be-4e08-acd0-9198f0c6fcbf.JPG)
+<br />**Fig12: Contents of README.md **
+
+The defaults are already set in the **floorplan.tcl** file-
+![17](https://user-images.githubusercontent.com/110470328/183286507-de6780be-e1e8-4ba7-ab98-578ce3164cf0.JPG)
+<br />**Fig13: Contents of floorplan.tcl **
+
+Floorplan is run using command **run_floorplan** . Alternatively we can also use the following commands in the updated version of OPENLANE.
+init_floorplan 
+place_io
+global_placement_or
+detailed_placement 
+tap_decap_or
+detailed_placement
+gen_pdn
+run_routing
+
+![19](https://user-images.githubusercontent.com/110470328/183286743-5db0cb9f-e6ff-4255-91a2-feab730c63fc.JPG)
+<br />**Fig14: "run_floorplan" **
+
+After floorplan is completed ***floorplan.def*** is generated. DEF file conveys logical design data and physical design data.
+![21 floorplan def file](https://user-images.githubusercontent.com/110470328/183286949-ffc045d6-90c8-40ba-afcf-61732fc7bd71.JPG)
+<br />**Fig15a: Generated Floorplan DEF File  **
+
+![22 floorplan def](https://user-images.githubusercontent.com/110470328/183287015-2176c7a0-b309-48c5-b0ee-e83beb7375e4.JPG)
+<br />**Fig15b: Generated Floorplan DEF File  **
+
+
+#### Viewing Floorplan in Magic Layout Tool
+To view our floorplan in Magic we need to provide three files as input:
+1. Technology file (sky130A.tech)
+2. Def file (generated from floorplan step)
+3. Merged LEF file (generated during design prep stage)
+<br />  **_Command: magic -T \<tech file> lef read \<lef file> def read \<def file>_**
+![23 cmd to open magic floorplan](https://user-images.githubusercontent.com/110470328/183287036-812c805e-1c9e-4a15-b2ab-7841b06daa17.JPG)
+<br />**Fig16: Starting Magic Layout Tool **
+
+![24 IO pins in magic](https://user-images.githubusercontent.com/110470328/183287068-55591de1-819d-4ff4-bd84-e1ad2228b277.JPG)
+<br />**Fig17: Floorplan in Magic Layout Tool**
+
+![25 layer of io pins magic](https://user-images.githubusercontent.com/110470328/183287117-2d7b522b-db92-4420-b5da-32d6e6749ea2.JPG)
+<br />**Fig17: Metal Layer of I/O Pins**
+
+
+
+
+
+
+
+
+
+
 
 
