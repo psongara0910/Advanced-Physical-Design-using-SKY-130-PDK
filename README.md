@@ -284,8 +284,8 @@ Steps to follow-
 
 For the design to function properly, the worst negative slack needs to be above or equal to 0. 
 We can do following steps to fix slack
-  1. Review our synthesis strategy in OpenLANE 
-  2. Enable cell buffering
+  1. Change the synthesis strategy **% set ::env(SYNTH_STRATEGY)**
+  2. Enable cell buffering **% set ::env(SYNTH_BUFFERING)**
   3. Perform manual cell replacement on our WNS path with the OpenSTA tool
   4. Optimize the fanout value with OpenLANE tool 
 
@@ -295,11 +295,39 @@ We can do following steps to fix slack
   3. report_check
   4. Replace cells (if cap is high ). This will take hit on area.
   5. report_check
+ 
+ 
+![50 synthesisresultwns](https://user-images.githubusercontent.com/110470328/183293751-0587f63c-270e-480d-a43e-da396301b252.JPG)
+<br />**Fig41 Synthesis result before optimization**
 
+Now we have changed the Synthesis strategy focused for delay which of course wil take hit on the area and it is also evident from the below evident in which area is increased.
+Before 
+Chip area for module '\picorv32a': 147712.918400 
+tns -709.98
+wns -23.89
 
+After
+Chip area for module '\picorv32a': 181730.544000
+tns 0.00
+wns 0.00
 
+![51 synthesis after optimization](https://user-images.githubusercontent.com/110470328/183293848-d9e7ac56-076b-499d-9320-d6ebb2fe441a.JPG)
+<br />**Fig42a Synthesis result after optimization**
 
+![52 synthesisresulttns](https://user-images.githubusercontent.com/110470328/183293860-2c938c23-3ea6-4272-92c5-8ef7920cef27.JPG)
+<br />**Fig42b Synthesis result after optimization**
 
+Now we will again do the floorplan and placement using revised strategies.
+![53 Placement after optimization](https://user-images.githubusercontent.com/110470328/183293893-3e344e49-900d-4141-820c-5bfa36e808fb.JPG)
+<br />**Fig43 Placement result in Magic**
+In placement we can verify that our custom inverter is included in the placement.
+![54 custom cell included in placement](https://user-images.githubusercontent.com/110470328/183293970-950547dc-d190-4ee1-b0ce-3ac914167bbe.JPG)
+<br />**Fig44 Custom inverter inclued in the final placement**
+
+### Clock Tree Synthesis
+Now we will lay out the clock tree network using **run_cts**.
+![55  run_cts](https://user-images.githubusercontent.com/110470328/183294125-a31b405f-791b-4289-811f-3bef04200682.JPG)
+<br />**Fig45 Running Clock Tree Synthesis**
 
 
 
