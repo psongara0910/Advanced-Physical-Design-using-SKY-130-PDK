@@ -169,7 +169,7 @@ The placement can be run using **run_placement** command.
 
 ## Day 3
 ### Opening the custom inverter layout file in Magic
-![image](https://user-images.githubusercontent.com/110470328/183288679-1bfa52a9-a2aa-4b9d-b892-ab5434dd6ba1.png)
+![31 opening std cell in magic](https://user-images.githubusercontent.com/110470328/183290513-48e2a34d-1279-49ae-807f-3abeed28e832.JPG)
 <br />**Fig24: Opening inverter.mag file in Magic**
 
 ![32  inv layout in magic](https://user-images.githubusercontent.com/110470328/183288743-801d8c45-b013-4871-a2bc-e1789db777f6.JPG)
@@ -186,6 +186,65 @@ ext2spice_**
 
 ![35 spice file ext2spice](https://user-images.githubusercontent.com/110470328/183289035-09e2c2fe-183d-4fcc-be69-9470e03fc58a.JPG)
 <br />**Fig27: Extracting spice file from Magic**
+
+The extracted spice netlist can be opened in a text editor and is shown below -
+![36 Extracted spice netlist](https://user-images.githubusercontent.com/110470328/183290601-1a387f0f-e2ab-4077-97ac-df8ec123217a.JPG)
+<br />**Fig28: Spice Netlist of Inverter**
+
+To plot the output waveform of the spice deck we will use NGspice. The steps to run the simulation on ngpice are as follows:
+1. Source the **.cir** spice deck file
+2. Run the spice file by: run
+3. Run: *setplot* → allows you to view any plots possible from the simulations specified in the spice deck
+4. Select the simulation desired by entering the simulation name in the terminal
+5. Run: display to see nodes available for plotting
+6. Run: *plot  vs*  to obtain output waveform  
+
+Trip Point or Switching Threshold is calculated where Vin=Vout.
+
+### CMOS Inverter fabrication Process:
+Inverter fabrication includes 16 MASK CMOS Process and steps are mentioned below-
+16-Mask CMOS Process-
+1. Selecting a substrate
+2. Creating active regions for transistors
+3. N-well and p-well formation
+4. Formation of Gate
+5. Lightly doped drain (LDD) formation
+6. Source and Drain Formation
+7. Steps to form connects and Interconnects
+8. Higher level Metal Formation
+
+
+Now coming to the simulation in ngspice.
+**Note:** In spice, X subscript is used when we are invoking existing subckt (i.e., if we have **_.subckt nshort_model.0_** ).
+Since here we are invoking nmos and pmos models directly, we need to change X0 to M0 and X1 to M1.
+![40 Modified Spice Netlist](https://user-images.githubusercontent.com/110470328/183290908-5ad67cfd-8e1e-4c41-aca8-2a00b3647ad2.JPG)
+<br />**Fig29: Spice Netlist of Inverter**
+
+![37 Inverter cs](https://user-images.githubusercontent.com/110470328/183291126-90311615-4ebe-4552-a269-f177d5f1d568.JPG)
+<br />**Fig30: Simulated Invertor Waveform**
+
+Now we will find Input Rise and Output rise time which is time from 20% of max. value to 80% of max. value.
+![38  rise time input](https://user-images.githubusercontent.com/110470328/183291173-7180b519-afe2-451c-9521-86a00cae6067.JPG)
+<br />**Fig31: Input Rise Time**
+
+![39 op rise time](https://user-images.githubusercontent.com/110470328/183291243-ed27a591-1d6b-4472-bbfe-a10403ea4166.JPG)
+<br />**Fig32 Output Rise Time**
+
+Input rise time = 59ps and Output rise time = 60.1ps
+
+
+## Day 4
+Magic can extract layout info in LEF format for PNR Tools. Given below are some rules which needs to be followed while doing layout of std.cell.
+1. Width of Standard cell should be odd multiples of track horizontal pitch and Height should be odd multiples of track Vertical Pitch
+2.Input and Output Ports are at the intersection of vertical and horizontal tracks.
+
+**track.info** has following format:<br />
+  **_\<metal layer> \<direction> \<offset> \<pitch>_** <br />
+ Below is a snapshot of **tracks.info** file
+![41 Tracks,info](https://user-images.githubusercontent.com/110470328/183291585-e24a36e4-bd4c-45ab-b502-7e42f0ee46f2.JPG)
+<br />**Fig33 Contents of tracks.info**
+
+
 
 
 
