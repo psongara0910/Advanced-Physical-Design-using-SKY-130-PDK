@@ -365,7 +365,7 @@ Now after laying out the CTS we will do the STA and the results are shown below-
 5. Pre-processed route Guide.
 
 ![62 PProcessed Route Guides](https://user-images.githubusercontent.com/110470328/183294481-0a032e7a-373c-4ced-95bd-b274c72836fb.JPG)
-<br />**Fig49 CTS successful**
+<br />**Fig49 Pre-processing routes**
 
 
 
